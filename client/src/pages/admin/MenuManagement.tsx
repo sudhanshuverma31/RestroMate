@@ -207,7 +207,7 @@ const MenuManagement: React.FC = () => {
               </button>
             </div>
             
-            <form onSubmit={(e) => {
+            <form id="menu-form" onSubmit={(e) => {
               e.preventDefault();
               const form = e.target as HTMLFormElement;
               const formData = new FormData(form);
@@ -251,7 +251,7 @@ const MenuManagement: React.FC = () => {
                   </div>
                   <input 
                     type="file" 
-                    className="text-xs file:btn-secondary file:border-0 file:mr-4 cursor-pointer text-brand-700" 
+                    className="text-xs file:px-4 file:py-2 file:rounded-xl file:border file:border-brand-600 file:text-brand-600 file:bg-transparent hover:file:bg-brand-600 hover:file:text-white file:border-0 file:mr-4 cursor-pointer text-brand-700" 
                     onChange={(e) => setImageFile(e.target.files?.[0] || null)}
                   />
                 </div>
@@ -271,7 +271,7 @@ const MenuManagement: React.FC = () => {
 
             <div className="p-6 bg-dark-muted border-t dark:border-dark-border border-light-border flex justify-end gap-3">
               <button onClick={closeModal} className="btn-secondary px-8">Cancel</button>
-              <button disabled={upsertMutation.isPending} className="btn-primary px-10">
+              <button type="submit" form="menu-form" disabled={upsertMutation.isPending} className="btn-primary px-10">
                 {upsertMutation.isPending ? <Loader2 size={18} className="animate-spin" /> : editingItem ? 'Save Changes' : 'Add Item'}
               </button>
             </div>

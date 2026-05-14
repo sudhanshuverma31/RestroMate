@@ -11,7 +11,7 @@ import {
   RefreshCw
 } from 'lucide-react';
 import { io, Socket } from 'socket.io-client';
-import api from '../../utils/api';
+import api, { SOCKET_URL } from '../../utils/api';
 import type { Order, OrderStatus } from '../../types';
 import FeedbackModal from '../../components/FeedbackModal';
 
@@ -45,7 +45,7 @@ const OrderStatusPage: React.FC = () => {
   useEffect(() => {
     if (!orderId) return;
 
-    const socket: Socket = io('/', { path: '/socket.io' });
+    const socket: Socket = io(SOCKET_URL, { path: '/socket.io' });
 
     socket.on('connect', () => {
       socket.emit('join-order', orderId);

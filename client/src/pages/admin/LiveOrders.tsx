@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import { io, Socket } from 'socket.io-client';
-import api from '../../utils/api';
+import api, { SOCKET_URL } from '../../utils/api';
 import type { Order, OrderStatus } from '../../types';
 
 const LiveOrders: React.FC = () => {
@@ -32,7 +32,7 @@ const LiveOrders: React.FC = () => {
 
   // Socket.io for real-time updates
   useEffect(() => {
-    const socket: Socket = io('/', { path: '/socket.io' });
+    const socket: Socket = io(SOCKET_URL, { path: '/socket.io' });
 
     socket.on('connect', () => {
       socket.emit('join-admin');
